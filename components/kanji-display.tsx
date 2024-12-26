@@ -11,22 +11,31 @@ export function KanjiDisplay({ kanji, katakana, romaji }: KanjiDisplayProps) {
     <div className="flex flex-col items-center justify-center space-y-4">
       {/* 田字格背景和书法字 */}
       <div className="relative w-60 h-60">
-        {/* 田字格背景 */}
-        <div className="absolute inset-0 border-2 border-gray-300">
-          <div className="absolute inset-0 flex">
-            <div className="w-1/2 border-r border-gray-300"></div>
-          </div>
-          <div className="absolute inset-0 flex flex-col">
-            <div className="h-1/2 border-b border-gray-300"></div>
-          </div>
+        {/* 背景和田字格 */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 240 240">
+          {/* 灰色背景 */}
+          <defs>
+            <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#f3f4f6" />
+              <stop offset="100%" stopColor="#e5e7eb" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="240" height="240" fill="url(#bg-gradient)" />
+          
+          {/* 外框 */}
+          <rect x="10" y="10" width="220" height="220" fill="none" stroke="#666" strokeWidth="2"/>
+          
+          {/* 横线 */}
+          <line x1="10" y1="120" x2="230" y2="120" stroke="#666" strokeWidth="1"/>
+          
+          {/* 竖线 */}
+          <line x1="120" y1="10" x2="120" y2="230" stroke="#666" strokeWidth="1"/>
+          
           {/* 对角线 */}
-          <div className="absolute inset-0" style={{
-            background: `
-              linear-gradient(to top right, transparent calc(50% - 1px), rgba(209, 213, 219, 1) calc(50% - 1px), rgba(209, 213, 219, 1) calc(50% + 1px), transparent calc(50% + 1px)),
-              linear-gradient(to top left, transparent calc(50% - 1px), rgba(209, 213, 219, 1) calc(50% - 1px), rgba(209, 213, 219, 1) calc(50% + 1px), transparent calc(50% + 1px))
-            `
-          }}></div>
-        </div>
+          <line x1="10" y1="10" x2="230" y2="230" stroke="#666" strokeWidth="1"/>
+          <line x1="230" y1="10" x2="10" y2="230" stroke="#666" strokeWidth="1"/>
+        </svg>
+        
         {/* 书法字 */}
         <div className="absolute inset-0 flex items-center justify-center">
           <span 
